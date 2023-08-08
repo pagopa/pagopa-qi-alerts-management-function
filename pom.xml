@@ -10,10 +10,10 @@
     <version>2.7.3</version>
   </parent>
 
-  <groupId>it.gov.pagopa</groupId>
-  <artifactId>microservice</artifactId> <!--TODO: set your artifactId-->
+  <groupId>it.pagopa</groupId>
+  <artifactId>pagopa-qi-alerts-management-function</artifactId>
   <version>0.0.0</version>
-  <description>Your description</description> <!--TODO: set your description-->
+  <description>Function to handle grafana alerts</description>
 
   <properties>
     <java.version>11</java.version>
