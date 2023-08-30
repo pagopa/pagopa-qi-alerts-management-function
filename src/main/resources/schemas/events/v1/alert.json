@@ -1,0 +1,8 @@
+{
+  "type":"object",
+  "properties": {
+    "details": {
+    "$ref": "./alertDetails.json"
+    }
+  }
+}

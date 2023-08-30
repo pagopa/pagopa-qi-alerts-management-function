@@ -276,6 +276,30 @@
                     </execution>
                 </executions>
             </plugin>
+            <!-- Event code generation -->
+            <plugin>
+                <groupId>org.jsonschema2pojo</groupId>
+                <artifactId>jsonschema2pojo-maven-plugin</artifactId>
+                <version>1.1.2</version>
+                <executions>
+                    <execution>
+                        <id>event-schemas</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <sourcePaths>
+                                <sourcePath>${basedir}/src/main/resources/schemas/events/v1/alert.json</sourcePath>
+                            </sourcePaths>
+                            <targetPackage>it.pagopa.generated.qi.events.v1</targetPackage>
+                            <includeConstructors>false</includeConstructors>
+                            <includeAdditionalProperties>false</includeAdditionalProperties>>
+                            <generateBuilders>true</generateBuilders>
+                            <usePrimitives>true</usePrimitives>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 </project>
