@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   app:
-    container_name: 'service' # TODO
+    container_name: 'pagopa-qi-alerts-management-function'
     image: ${image}
     platform: linux/amd64
     build:
@@ -11,4 +11,4 @@ services:
     env_file:
       - ./.env
     ports:
-      - "8080:8080"
+      - "8080:80"
