@@ -9,7 +9,7 @@ tags:
   - name: QI
     description: Api's for alert ingestion
     externalDocs:
-      url: TODO
+      url: https://pagopa.atlassian.net/wiki/spaces/PPAOP/pages/758874245/DR+Gestione+Alert
       description: Technical specifications
 
 paths:
@@ -83,51 +83,103 @@ components:
       example: 200
     QiAlertIngestionRequest:
       type: object
-      description: Alert ingestion request
+      description: Alert ingestion request. This maps grafana webhook specifications https://grafana.com/docs/grafana/latest/alerting/alerting-rules/manage-contact-points/webhook-notifier
       properties:
+        receiver:
+          type: string
+          description: Name of the webhook
+        status:
+          type: string
+          description: Current status of the alert, firing or resolved
+        orgId:
+          type: number
+          description: ID of the organization related to the payload
         alerts:
           type: array
+          description: Alerts that are triggering
           items:
             $ref: '#/components/schemas/AlertInfo'
-          minItems: 1
-      required:
-       - alerts
-    AlertInfo: 
+        groupLabels:
+          $ref: '#/components/schemas/KeyValueMapStringValue'
+        commonLabels:
+          $ref: '#/components/schemas/KeyValueMapStringValue'
+        commonAnnotations:
+          $ref: '#/components/schemas/KeyValueMapStringValue'
+        externalURL:
+          type: string
+          format: uri
+          description: External URL to the Grafana instance sending this webhook
+        version:
+          type: string
+          description: Version of the payload
+        groupKey:
+          type: string
+          description: Key that is used for grouping
+        truncatedAlerts:
+          type: number
+          description: Number of alerts that were truncated
+        title:
+          type: string
+          description: Will be deprecated soon
+        state:
+          type: string
+          description: Will be deprecated soon
+        message:
+          type: string
+          description: Will be deprecated soon
+    AlertInfo:
       type: object
       description: Alert information
-      properties: 
-        code: 
+      properties:
+        status:
           type: string
-          description: Unique code that identifies the alert typology
-          enum:
-            - TDP
-            - TGP
-            - TSRT
-            - TVP
-            - TPNP
-            - TNSPO
-            - TPSPO
-            - NFER
-            - NBI
-        owner:
-          type: string
-          description: Identifier of subject that caused the alert trigger
-        threshold:
-          type: integer
-          description: Alert metric threshold
-        value:
-          type: integer
-          description: Detected metric threshold that trigger alert
-        triggerDate:
+          description: Current status of the alert, firing or resolved
+        labels:
+          $ref: '#/components/schemas/KeyValueMapStringValue'
+        annotations:
+          $ref: '#/components/schemas/KeyValueMapStringValue'
+        startsAt:
           type: string
           format: date-time
-          description: Timestamp when alert is triggered
-      required:
-       - code
-       - owner
-       - threshold
-       - value
-       - triggerDate
+          description: Start time of the alert
+        endsAt:
+          type: string
+          format: date-time
+          description: End time of the alert, default value when not resolved is 0001-01-01T00:00:00Z
+        values:
+          $ref: '#/components/schemas/KeyValueMapNumericValue'
+        generatorURL:
+          type: string
+          format: uri
+          description: URL of the alert rule in the Grafana UI
+        fingerprint:
+          type: string
+          description: The labels fingerprint, alarms with the same labels will have the same fingerprint
+        silenceURL:
+          type: string
+          format: uri
+          description: URL to silence the alert rule in the Grafana UI
+        dashboardURL:
+          type: string
+          format: uri
+          description: Will be deprecated soon
+        panelURL:
+          type: string
+          format: uri
+          description: Will be deprecated soon
+        imageURL:
+          type: string
+          format: uri
+          description: Will be deprecated soon
+    KeyValueMapStringValue:
+      type: object
+      additionalProperties:
+        type: string
+    KeyValueMapNumericValue:
+      type: object
+      additionalProperties:
+        type: number
+        format: double
   requestBodies:
     QiAlertIngestionRequest:
       required: true
