@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>it.pagopa</groupId>
-    <artifactId>pagopa-qi-alerte-management-function</artifactId>
+    <artifactId>pagopa-qi-alerts-management-function</artifactId>
     <version>0.0.1</version>
     <packaging>jar</packaging>
 
