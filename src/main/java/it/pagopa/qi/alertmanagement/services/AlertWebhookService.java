@@ -73,7 +73,10 @@ public class AlertWebhookService {
                 labelsKey -> alertParser.getNumericValue(labelsKey).orElseThrow(() -> new AlertParsingException(labelsKey.getKey(), null, fingerprint))
         );
         //validate start at date
-        alertParser.getStartAtDate().orElseThrow(() -> new AlertParsingException("startAtDate", null, fingerprint));
+        if (alertParser.getStartAtDate().isEmpty()) {
+            throw new AlertParsingException("startAtDate", null, fingerprint);
+        }
+        ;
         //validate code against codes enumeration
         String code = alertParser.getLabelValue(AlertParser.LabelsKey.CODE).orElse(null);
         if (!ALERT_CODES.contains(code)) {
