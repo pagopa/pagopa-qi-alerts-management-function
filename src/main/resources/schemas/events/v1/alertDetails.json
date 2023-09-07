@@ -19,10 +19,12 @@
       "type": "string"
     },
     "threshold": {
-      "type": "integer"
+      "type": "number",
+      "format": "double"
     },
     "value": {
-      "type": "integer"
+      "type": "number",
+      "format": "double"
     },
     "triggerDate": {
       "type": "string",
