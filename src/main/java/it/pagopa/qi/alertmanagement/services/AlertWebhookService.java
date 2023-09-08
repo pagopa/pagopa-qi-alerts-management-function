@@ -47,7 +47,7 @@ public class AlertWebhookService {
                                     }
                                     boolean toBeFiltered = isResolved || !isValid;
                                     logger.info("Alert with fingerprint: [{}]. Status: [{}], is valid: [{}] to be filtered out -> {}", alert.getFingerprint(), alert.getStatus(), isValid, toBeFiltered);
-                                    return toBeFiltered;
+                                    return !toBeFiltered;
                                 })
                                 .map(AlertParser::new)
                                 .map(this::buildAlertFromWebhook)
@@ -76,7 +76,6 @@ public class AlertWebhookService {
         if (alertParser.getStartAtDate().isEmpty()) {
             throw new AlertParsingException("startAtDate", null, fingerprint);
         }
-        ;
         //validate code against codes enumeration
         String code = alertParser.getLabelValue(AlertParser.LabelsKey.CODE).orElse(null);
         if (!ALERT_CODES.contains(code)) {
