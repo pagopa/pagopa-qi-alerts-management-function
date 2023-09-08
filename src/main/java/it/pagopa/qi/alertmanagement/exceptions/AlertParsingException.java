@@ -13,7 +13,7 @@ public class AlertParsingException extends RuntimeException {
      * @param fingerprint the invalid alert fingerprint
      */
     public AlertParsingException(String fieldName, String fieldValue, String fingerprint) {
-        super(String.format("Exception parsing alert with fingerprint: [%s]. Field: [%s] with value: [%s] is invalid", fingerprint, fieldName, fieldValue));
+        super("Exception parsing alert with fingerprint: [%s]. Field: [%s] with value: [%s] is invalid".formatted(fingerprint, fieldName, fieldValue));
 
 
     }
