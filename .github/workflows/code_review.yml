@@ -33,9 +33,11 @@ jobs:
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
+
     steps:
       - name: Code Review
-        uses: pagopa/github-actions-template/maven-code-review@bb8a89da79c32edeeb281bdeff7828dad25c5e27
+        # see https://github.com/pagopa/github-actions-template/commits/main
+        uses: pagopa/github-actions-template/maven-code-review@50aaf5cffa09d76b953e64a630bc9e0528a6d73b
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           sonar_token: ${{ secrets.SONAR_TOKEN }}
