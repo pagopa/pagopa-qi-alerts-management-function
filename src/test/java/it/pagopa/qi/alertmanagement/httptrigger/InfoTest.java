@@ -17,6 +17,7 @@ import java.io.File;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.times;
@@ -64,15 +65,17 @@ class InfoTest {
     void shouldParseAppInfoSuccessfullyFromPomProperties() {
         System.out.println(new File(".").getAbsolutePath());
         AppInfo appInfo = info.getInfo("/META-INF/maven/appInfo/pom.properties");
-        AppInfo expectedAppInfo = AppInfo.builder().name("pagopa-qi-alerts-management-function").environment("azure-fn").version("0.0.1").build();
-        assertEquals(expectedAppInfo, appInfo);
+        assertEquals("pagopa-qi-alerts-management-function", appInfo.getName());
+        assertEquals("azure-fn", appInfo.getEnvironment());
+        assertEquals("0.0.1", appInfo.getVersion());
     }
 
     @Test
     void shouldReturnInfoForMissingAppInfo() {
         System.out.println(new File(".").getAbsolutePath());
         AppInfo appInfo = info.getInfo("/META-INF/maven/appInfo/missingInfo");
-        AppInfo expectedAppInfo = AppInfo.builder().environment("azure-fn").build();
-        assertEquals(expectedAppInfo, appInfo);
+        assertNull(appInfo.getName());
+        assertEquals("azure-fn", appInfo.getEnvironment());
+        assertNull(appInfo.getVersion());
     }
 }
