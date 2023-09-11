@@ -5,7 +5,7 @@
 
     <groupId>it.pagopa</groupId>
     <artifactId>pagopa-qi-alerts-management-function</artifactId>
-    <version>0.0.1-6-PQI-41-alert-parsing</version>
+    <version>0.0.2</version>
     <packaging>jar</packaging>
 
     <name>Quality improvement alerts management</name>
