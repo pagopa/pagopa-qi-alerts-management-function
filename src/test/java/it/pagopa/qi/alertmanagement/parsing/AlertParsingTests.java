@@ -1,8 +1,9 @@
-package it.pagopa.qi.alertmanagement;
+package it.pagopa.qi.alertmanagement.parsing;
 
 import it.pagopa.generated.qi.alerts.v1.dto.AlertInfoDto;
 import it.pagopa.generated.qi.alerts.v1.dto.QiAlertIngestionRequestDto;
 import it.pagopa.generated.qi.events.v1.AlertDetails;
+import it.pagopa.qi.alertmanagement.AlertManagementTestUtils;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;

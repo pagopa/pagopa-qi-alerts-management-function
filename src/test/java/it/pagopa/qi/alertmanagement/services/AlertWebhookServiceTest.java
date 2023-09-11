@@ -9,9 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -26,14 +24,14 @@ class AlertWebhookServiceTest {
         String request = AlertManagementTestUtils.getWebhookRequest("webhook_ok.json");
         QiAlertIngestionRequestDto parsedRequest = AlertManagementTestUtils.OBJECT_MAPPER.readValue(request, QiAlertIngestionRequestDto.class);
         //test
-        List<Alert> alerts = alertWebhookService.toAlertStream(parsedRequest).collect(Collectors.toList());
+        List<Alert> alerts = alertWebhookService.toAlertList(parsedRequest);
         List<Alert> expectedAlerts = List.of(
                 new Alert()
                         .withDetails(
                                 new AlertDetails()
                                         .withCode(AlertDetails.Code.TDP)
                                         .withOwner("owner1")
-                                        .withTriggerDate(OffsetDateTime.parse("2021-10-12T09:51:03.157076Z"))
+                                        .withTriggerDate("2021-10-12T09:51:03.157076Z")
                                         .withValue(97.999)
                                         .withThreshold(98)
                         ),
@@ -42,7 +40,7 @@ class AlertWebhookServiceTest {
                                 new AlertDetails()
                                         .withCode(AlertDetails.Code.TGP)
                                         .withOwner("owner2")
-                                        .withTriggerDate(OffsetDateTime.parse("2021-10-12T09:51:03.157076Z"))
+                                        .withTriggerDate("2021-10-12T09:51:03.157076Z")
                                         .withValue(97.997)
                                         .withThreshold(98)
                         )
@@ -62,7 +60,7 @@ class AlertWebhookServiceTest {
         String request = AlertManagementTestUtils.getWebhookRequest(webhookFileName);
         QiAlertIngestionRequestDto parsedRequest = AlertManagementTestUtils.OBJECT_MAPPER.readValue(request, QiAlertIngestionRequestDto.class);
         //test
-        List<Alert> alerts = alertWebhookService.toAlertStream(parsedRequest).collect(Collectors.toList());
+        List<Alert> alerts = alertWebhookService.toAlertList(parsedRequest);
         assertNotNull(alerts);
         List<Alert> expectedAlerts = List.of(
                 new Alert()
@@ -70,7 +68,7 @@ class AlertWebhookServiceTest {
                                 new AlertDetails()
                                         .withCode(AlertDetails.Code.TGP)
                                         .withOwner("owner2")
-                                        .withTriggerDate(OffsetDateTime.parse("2021-10-12T09:51:03.157076Z"))
+                                        .withTriggerDate("2021-10-12T09:51:03.157076Z")
                                         .withValue(97.997)
                                         .withThreshold(98)
                         )

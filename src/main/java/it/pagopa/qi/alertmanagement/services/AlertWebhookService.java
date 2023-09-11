@@ -9,11 +9,12 @@ import it.pagopa.qi.alertmanagement.utils.AlertParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.time.OffsetDateTime;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * This service handle received alert request converting it to EventHub events
@@ -30,29 +31,35 @@ public class AlertWebhookService {
      * @param qiAlertIngestionRequestDto the received alert request
      * @return a stream of converted alerts
      */
-    public Stream<Alert> toAlertStream(QiAlertIngestionRequestDto qiAlertIngestionRequestDto) {
+    public List<Alert> toAlertList(QiAlertIngestionRequestDto qiAlertIngestionRequestDto) {
         return Optional
                 .ofNullable(qiAlertIngestionRequestDto.getAlerts())
-                .map(alerts ->
-                        alerts
-                                .stream()
-                                .filter(alert -> {
-                                    boolean isResolved = "resolved".equals(alert.getStatus());
-                                    boolean isValid = true;
-                                    try {
-                                        validateAlert(alert);
-                                    } catch (AlertParsingException e) {
-                                        logger.error("Invalid input alert", e);
-                                        isValid = false;
-                                    }
-                                    boolean toBeFiltered = isResolved || !isValid;
-                                    logger.info("Alert with fingerprint: [{}]. Status: [{}], is valid: [{}] to be filtered out -> {}", alert.getFingerprint(), alert.getStatus(), isValid, toBeFiltered);
-                                    return !toBeFiltered;
-                                })
-                                .map(AlertParser::new)
-                                .map(this::buildAlertFromWebhook)
+                .map(alerts -> {
+                            logger.info("Received alerts: {}", alerts.size());
+                            return alerts
+                                    .stream()
+                                    .filter(alert -> {
+                                        boolean isResolved = "resolved".equals(alert.getStatus());
+                                        boolean isValid = true;
+                                        try {
+                                            validateAlert(alert);
+                                        } catch (AlertParsingException e) {
+                                            logger.error("Invalid input alert", e);
+                                            isValid = false;
+                                        }
+                                        boolean toBeFiltered = isResolved || !isValid;
+                                        logger.info("Alert with fingerprint: [{}]. Status: [{}], is valid: [{}] to be filtered out -> {}", alert.getFingerprint(), alert.getStatus(), isValid, toBeFiltered);
+                                        return !toBeFiltered;
+                                    })
+                                    .map(AlertParser::new)
+                                    .map(this::buildAlertFromWebhook)
+                                    .toList();
+                        }
                 )
-                .orElse(Stream.of());
+                .orElseGet(() -> {
+                    logger.info("No alert received for input request");
+                    return List.of();
+                });
 
     }
 
@@ -99,7 +106,7 @@ public class AlertWebhookService {
                                         .orElseThrow())
                                 .withThreshold(alertParser.getNumericValue(AlertParser.NumericValuesKey.THRESHOLD).orElseThrow())
                                 .withValue(alertParser.getNumericValue(AlertParser.NumericValuesKey.VALUE).orElseThrow())
-                                .withTriggerDate(alertParser.getStartAtDate().orElseThrow())
+                                .withTriggerDate(alertParser.getStartAtDate().map(OffsetDateTime::toString).orElseThrow())
                 );
     }
 

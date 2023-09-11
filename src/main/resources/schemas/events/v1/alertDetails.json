@@ -27,9 +27,7 @@
       "format": "double"
     },
     "triggerDate": {
-      "type": "string",
-      "format": "date-time",
-      "existingJavaType": "java.time.OffsetDateTime"
+      "type": "string"
     }
   }
 }
