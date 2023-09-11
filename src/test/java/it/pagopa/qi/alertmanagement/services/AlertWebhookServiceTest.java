@@ -114,5 +114,18 @@ class AlertWebhookServiceTest {
         }
     }
 
+    @Test
+    void shouldParseWebhookRequestWithNoAlerts() throws Exception {
+        //pre-condition
+        String request = AlertManagementTestUtils.getWebhookRequest("webhook_ok_with_no_alerts.json");
+        QiAlertIngestionRequestDto parsedRequest = AlertManagementTestUtils.OBJECT_MAPPER.readValue(request, QiAlertIngestionRequestDto.class);
+        //test
+        List<Alert> alerts = alertWebhookService.toAlertList(parsedRequest);
+        List<Alert> expectedAlerts = List.of();
+        //assertions
+        assertNotNull(alerts);
+        assertEquals(alerts, expectedAlerts);
+    }
+
 
 }
