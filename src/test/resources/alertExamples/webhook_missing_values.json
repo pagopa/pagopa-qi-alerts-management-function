@@ -1,0 +1,61 @@
+{
+  "receiver": "My Super Webhook",
+  "status": "firing",
+  "orgId": 1,
+  "alerts": [
+    {
+      "status": "firing",
+      "labels": {
+        "code": "TDP",
+        "owner": "owner1"
+      },
+      "annotations": {
+        "description": "annotation",
+        "runbook_url": "https://url",
+        "summary": "summary"
+      },
+      "startsAt": "2021-10-12T09:51:03.157076Z",
+      "endsAt": "0001-01-01T00:00:00Z",
+      "generatorURL": "https://url",
+      "fingerprint": "c6eadffa33fcdf37",
+      "silenceURL": "https://url",
+      "dashboardURL": "",
+      "panelURL": ""
+    },
+    {
+      "status": "firing",
+      "labels": {
+        "code": "TGP",
+        "owner": "owner2"
+      },
+      "annotations": {
+        "description": "annotation",
+        "runbook_url": "https://url",
+        "summary": "summary"
+      },
+      "startsAt": "2021-10-12T09:51:03.157076Z",
+      "endsAt": "0001-01-01T00:00:00Z",
+      "generatorURL": "https://url",
+      "fingerprint": "c6eadffa33fcdf02",
+      "silenceURL": "https://url",
+      "dashboardURL": "",
+      "panelURL": "",
+      "values": {
+        "threshold": 98,
+        "value": 97.997
+      }
+    }
+  ],
+  "groupLabels": {},
+  "commonLabels": {
+    "team": "blue"
+  },
+  "commonAnnotations": {},
+  "externalURL": "https://play.grafana.org/",
+  "version": "1",
+  "groupKey": "{}:{}",
+  "truncatedAlerts": 0,
+  "title": "[FIRING:2]  (blue)",
+  "state": "alerting",
+  "message": "**Firing**\n\nLabels:\n - alertname = T2\n - team = blue\n - zone = us-1\nAnnotations:\n - description = This is the alert rule checking the second system\n - runbook_url = https://myrunbook.com\n - summary = This is my summary\nSource: https://play.grafana.org/alerting/1afz29v7z/edit\nSilence: https://play.grafana.org/alerting/silence/new?alertmanager=grafana&matchers=alertname%3DT2%2Cteam%3Dblue%2Czone%3Dus-1\n\nLabels:\n - alertname = T1\n - team = blue\n - zone = eu-1\nAnnotations:\nSource: https://play.grafana.org/alerting/d1rdpdv7k/edit\nSilence: https://play.grafana.org/alerting/silence/new?alertmanager=grafana&matchers=alertname%3DT1%2Cteam%3Dblue%2Czone%3Deu-1\n"
+}

@@ -5,16 +5,16 @@
 
     <groupId>it.pagopa</groupId>
     <artifactId>pagopa-qi-alerts-management-function</artifactId>
-    <version>0.0.2</version>
+    <version>0.0.1-6-PQI-41-alert-parsing</version>
     <packaging>jar</packaging>
 
     <name>Quality improvement alerts management</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.version>11</java.version>
-        <azure.functions.maven.plugin.version>1.15.0</azure.functions.maven.plugin.version>
-        <azure.functions.java.library.version>1.4.2</azure.functions.java.library.version>
+        <java.version>17</java.version>
+        <azure.functions.maven.plugin.version>1.27.0</azure.functions.maven.plugin.version>
+        <azure.functions.java.library.version>3.0.0</azure.functions.java.library.version>
         <functionAppName>com.microsoft.azure-20220215182005862</functionAppName>
         <resteasy.version>3.15.3.Final</resteasy.version>
     </properties>
@@ -121,6 +121,12 @@
             <scope>provided</scope>
         </dependency>
 
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.2.10</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -145,7 +151,7 @@
                     <appSettings>
                         <property>
                             <name>FUNCTIONS_EXTENSION_VERSION</name>
-                            <value>~3</value>
+                            <value>~4</value>
                         </property>
                     </appSettings>
                     <resourceGroup>java-functions-group</resourceGroup>
@@ -153,7 +159,7 @@
                     <region>westus</region>
                     <runtime>
                         <os>windows</os>
-                        <javaVersion>11</javaVersion>
+                        <javaVersion>17</javaVersion>
                     </runtime>
                 </configuration>
                 <executions>

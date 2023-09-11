@@ -19,15 +19,15 @@
       "type": "string"
     },
     "threshold": {
-      "type": "integer"
+      "type": "number",
+      "format": "double"
     },
     "value": {
-      "type": "integer"
+      "type": "number",
+      "format": "double"
     },
     "triggerDate": {
-      "type": "string",
-      "format": "date-time",
-      "existingJavaType": "java.time.OffsetDateTime"
+      "type": "string"
     }
   }
 }
