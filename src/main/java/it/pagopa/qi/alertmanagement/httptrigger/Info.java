@@ -4,7 +4,7 @@ import com.microsoft.azure.functions.*;
 import com.microsoft.azure.functions.annotation.AuthorizationLevel;
 import com.microsoft.azure.functions.annotation.FunctionName;
 import com.microsoft.azure.functions.annotation.HttpTrigger;
-import it.pagopa.qi.alertmanagement.AppInfo;
+import it.pagopa.qi.alertmanagement.models.AppInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
