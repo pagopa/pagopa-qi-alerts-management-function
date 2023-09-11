@@ -55,7 +55,14 @@ class AlertWebhookServiceTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"webhook_unknown_code.json", "webhook_missing_owner_label.json", "webhook_missing_threshold_value.json"})
+    @ValueSource(strings = {
+            "webhook_unknown_code.json",
+            "webhook_missing_owner_label.json",
+            "webhook_missing_threshold_value.json",
+            "webhook_missing_startAtDate_value.json",
+            "webhook_missing_labels.json",
+            "webhook_missing_values.json"
+    })
     void shouldFilterOutInvalidEvents(String webhookFileName) throws JsonProcessingException {
         String request = AlertManagementTestUtils.getWebhookRequest(webhookFileName);
         QiAlertIngestionRequestDto parsedRequest = AlertManagementTestUtils.OBJECT_MAPPER.readValue(request, QiAlertIngestionRequestDto.class);
@@ -73,6 +80,33 @@ class AlertWebhookServiceTest {
                                         .withThreshold(98)
                         )
         );
+        int idx = 0;
+        for (Alert alert : alerts) {
+            assertEquals(alert, expectedAlerts.get(idx), "Mismatch for alert at idx " + idx);
+            idx++;
+        }
+    }
+
+    @Test
+    void shouldConvertAlertRequestToAlertEventFilteringOutResolvedAlerts() throws Exception {
+        //pre-condition
+        String request = AlertManagementTestUtils.getWebhookRequest("webhook_ok_with_resolved_alert.json");
+        QiAlertIngestionRequestDto parsedRequest = AlertManagementTestUtils.OBJECT_MAPPER.readValue(request, QiAlertIngestionRequestDto.class);
+        //test
+        List<Alert> alerts = alertWebhookService.toAlertList(parsedRequest);
+        List<Alert> expectedAlerts = List.of(
+                new Alert()
+                        .withDetails(
+                                new AlertDetails()
+                                        .withCode(AlertDetails.Code.TGP)
+                                        .withOwner("owner2")
+                                        .withTriggerDate("2021-10-12T09:51:03.157076Z")
+                                        .withValue(97.997)
+                                        .withThreshold(98)
+                        )
+        );
+        //assertions
+        assertNotNull(alerts);
         int idx = 0;
         for (Alert alert : alerts) {
             assertEquals(alert, expectedAlerts.get(idx), "Mismatch for alert at idx " + idx);
