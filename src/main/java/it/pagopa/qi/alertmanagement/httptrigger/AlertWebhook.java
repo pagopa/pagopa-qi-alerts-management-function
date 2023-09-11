@@ -62,7 +62,7 @@ public class AlertWebhook {
                     .orElseThrow();
             logger.info("Parsed alerts: {}", alerts.size());
             queueAlerts.setValue(alerts);
-            return request.createResponseBuilder(HttpStatus.NO_CONTENT).build();
+            return request.createResponseBuilder(HttpStatus.ACCEPTED).build();
         } catch (InvalidRequestException e) {
             return request
                     .createResponseBuilder(HttpStatus.BAD_REQUEST)
