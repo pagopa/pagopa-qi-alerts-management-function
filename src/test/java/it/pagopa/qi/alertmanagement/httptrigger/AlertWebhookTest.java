@@ -49,7 +49,7 @@ class AlertWebhookTest {
         String request = AlertManagementTestUtils.getWebhookRequest("webhook_ok.json");
         given(httpRequestMessage.getBody()).willReturn(Optional.of(request));
         given(executionContext.getInvocationId()).willReturn("invocationId");
-        given(httpRequestMessage.createResponseBuilder(HttpStatus.ACCEPTED)).willReturn(httpResponseBuilder);
+        given(httpRequestMessage.createResponseBuilder(HttpStatus.CREATED)).willReturn(httpResponseBuilder);
         willDoNothing().given(outputBinding).setValue(alertCaptor.capture());
         //test
         alertWebhook.run(httpRequestMessage, outputBinding, executionContext);
