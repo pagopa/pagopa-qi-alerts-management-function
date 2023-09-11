@@ -2,8 +2,8 @@ apiVersion: v2
 name: pagopa-functions-template
 description: Microservice description
 type: application
-version: 0.1.0
-appVersion: 0.0.1-1-PQI-41-alert-parsing
+version: 0.2.0
+appVersion: 0.0.1-2-PQI-41-alert-parsing
 dependencies:
   - name: microservice-chart
     version: 5.0.0
