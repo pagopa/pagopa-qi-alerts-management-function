@@ -1,42 +1,41 @@
-# pagoPA Functions template
+# pagoPA qi alerts management function
 
-Java template to create an Azure Function.
+This function handle alerts coming from Grafana translating alerts to EventHub events
+containing information extracted from fired alerts
 
-## Function examples
-There is an example of a Http Trigger function.
+## AlertWebhook
+
+HTTP triggered function that handles webhook requests coming from Grafana.
 
 ---
 
 ## Run locally with Docker
-`docker build -t pagopa-functions-template .`
 
-`docker run -p 8999:80 pagopa-functions-template`
-
-### Test
-`curl http://localhost:8999/example`
+```Shell
+docker build -t pagopa-qi-alerts-management-function .
+docker run -p 8999:80 pagopa-qi-alerts-management-function
+```
 
 ## Run locally with Maven
 
-`mvn clean package`
+```Shell
+mvn clean package azure-functions:run
+```
 
-`mvn azure-functions:run`
+### Populate the environment
 
-### Test
-`curl http://localhost:7071/example` 
+The microservice needs a valid `local.settings.json` file in order to be run.
 
----
+If you want to start the application without too much hassle, you can just copy `local.settings.json.example` with
 
+```shell
+cp ./local.settings.json.example ./local.settings.json
+```
 
-## TODO
-Once cloned the repo, you should:
-- to deploy on standard Azure service:
-  - rename `deploy-pipelines-standard.yml` to `deploy-pipelines.yml`
-  - remove `helm` folder
-- to deploy on Kubernetes:
-  - rename `deploy-pipelines-aks.yml` to `deploy-pipelines.yml`
-  - customize `helm` configuration
-- configure the following GitHub action in `.github` folder: 
-  - `deploy.yml`
-  - `sonar_analysis.yml`
+to get a good default configuration.
 
-Configure the SonarCloud project :point_right: [guide](https://pagopa.atlassian.net/wiki/spaces/DEVOPS/pages/147193860/SonarCloud+experimental).
+If you want to customize the application environment, reference this table:
+
+| Variable name                     | Description                                                                      | type   | default |
+|-----------------------------------|----------------------------------------------------------------------------------|--------|---------|
+| QI_ALERTS_TX_EVENTHUB_CONN_STRING | EventHub connection string where function connects to send received alert events | string |         |

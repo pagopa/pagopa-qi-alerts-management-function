@@ -43,7 +43,7 @@ public class AlertWebhook {
             @EventHubOutput(
                     name = "QiAlerts",
                     eventHubName = "", // blank because the value is included in the connection string
-                    connection = "QI_EVENTHUB_CONNECTION_STRING")
+                    connection = "QI_ALERTS_TX_EVENTHUB_CONN_STRING")
             OutputBinding<List<Alert>> queueAlerts,
             final ExecutionContext context) {
         logger.info("Received new alert webhook trigger request with invocation id: [{}]", context.getInvocationId());
