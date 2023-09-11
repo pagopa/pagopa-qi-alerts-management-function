@@ -39,7 +39,7 @@ public class AlertWebhook {
             @HttpTrigger(
                     name = "AlertWebhookTrigger",
                     methods = {HttpMethod.POST},
-                    route = "alerts",
+                    route = "qi/alerts",
                     authLevel = AuthorizationLevel.ANONYMOUS) HttpRequestMessage<Optional<String>> request,
             @EventHubOutput(
                     name = "QiAlerts",
