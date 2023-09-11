@@ -52,7 +52,11 @@ public class AlertWebhookService {
                                         return !toBeFiltered;
                                     })
                                     .map(AlertParser::new)
-                                    .map(this::buildAlertFromWebhook)
+                                    .map(alertParser -> {
+                                        Alert alert = buildAlertFromWebhook(alertParser);
+                                        logger.info("Parsed alert: {}", alert);
+                                        return alert;
+                                    })
                                     .toList();
                         }
                 )
