@@ -4,14 +4,12 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.microsoft.azure.functions.ExecutionContext;
-import com.microsoft.azure.functions.HttpMethod;
-import com.microsoft.azure.functions.HttpRequestMessage;
-import com.microsoft.azure.functions.OutputBinding;
+import com.microsoft.azure.functions.*;
 import com.microsoft.azure.functions.annotation.AuthorizationLevel;
 import com.microsoft.azure.functions.annotation.EventHubOutput;
 import com.microsoft.azure.functions.annotation.FunctionName;
 import com.microsoft.azure.functions.annotation.HttpTrigger;
+import it.pagopa.generated.qi.alerts.v1.dto.ProblemJsonDto;
 import it.pagopa.generated.qi.alerts.v1.dto.QiAlertIngestionRequestDto;
 import it.pagopa.generated.qi.events.v1.Alert;
 import it.pagopa.qi.alertmanagement.exceptions.InvalidRequestException;
@@ -35,7 +33,7 @@ public class AlertWebhook {
      * This function will be invoked when a Http Trigger occurs
      */
     @FunctionName("AlertWebhook")
-    public void run(
+    public HttpResponseMessage run(
             @HttpTrigger(
                     name = "AlertWebhookTrigger",
                     methods = {HttpMethod.POST},
@@ -47,21 +45,45 @@ public class AlertWebhook {
                     connection = "QI_ALERTS_TX_EVENTHUB_CONN_STRING")
             OutputBinding<List<Alert>> queueAlerts,
             final ExecutionContext context) {
-        logger.info("Received new alert webhook trigger request with invocation id: [{}]", context.getInvocationId());
-        AlertWebhookService alertWebhookService = new AlertWebhookService();
-        List<Alert> alerts = request
-                .getBody()
-                .map(requestBody -> {
-                    try {
-                        return objectMapper.readValue(requestBody, QiAlertIngestionRequestDto.class);
-                    } catch (JsonProcessingException e) {
-                        throw new InvalidRequestException("Cannot parse input request", e);
-                    }
-                })
-                .map(alertWebhookService::toAlertList)
-                .orElseThrow();
-        logger.info("Parsed alerts: {}", alerts.size());
-        queueAlerts.setValue(alerts);
+        try {
+            logger.info("Received new alert webhook trigger request with invocation id: [{}]", context.getInvocationId());
+            AlertWebhookService alertWebhookService = new AlertWebhookService();
+            List<Alert> alerts = request
+                    .getBody()
+                    .map(requestBody -> {
+                        try {
+                            return objectMapper.readValue(requestBody, QiAlertIngestionRequestDto.class);
+                        } catch (JsonProcessingException e) {
+                            throw new InvalidRequestException("Cannot parse input request", e);
+
+                        }
+                    })
+                    .map(alertWebhookService::toAlertList)
+                    .orElseThrow();
+            logger.info("Parsed alerts: {}", alerts.size());
+            queueAlerts.setValue(alerts);
+            return request.createResponseBuilder(HttpStatus.NO_CONTENT).build();
+        } catch (InvalidRequestException e) {
+            return request
+                    .createResponseBuilder(HttpStatus.BAD_REQUEST)
+                    .body(
+                            new ProblemJsonDto()
+                                    .title("Invalid input request")
+                                    .detail(e.getMessage())
+                                    .status(400)
+                    )
+                    .build();
+        } catch (Exception e) {
+            return request
+                    .createResponseBuilder(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(
+                            new ProblemJsonDto()
+                                    .title("Error processing the request")
+                                    .detail("Unexpected error happened during request processing")
+                                    .status(500)
+                    )
+                    .build();
+        }
 
     }
 }
