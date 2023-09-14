@@ -41,21 +41,9 @@
 		},
 		{
 			"name": "Get app info",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"receiver\": \"My Super Webhook\",\n  \"status\": \"firing\",\n  \"orgId\": 1,\n  \"alerts\": [\n    {\n      \"status\": \"firing\",\n      \"labels\": {\n        \"code\": \"TDP\",\n        \"owner\": \"owner1\"\n      },\n      \"annotations\": {\n        \"description\": \"annotation\",\n        \"runbook_url\": \"https://url\",\n        \"summary\": \"summary\"\n      },\n      \"startsAt\": \"2021-10-12T09:51:03.157076Z\",\n      \"endsAt\": \"0001-01-01T00:00:00Z\",\n      \"generatorURL\": \"https://url\",\n      \"fingerprint\": \"c6eadffa33fcdf37\",\n      \"silenceURL\": \"https://url\",\n      \"dashboardURL\": \"\",\n      \"panelURL\": \"\",\n      \"values\": {\n        \"threshold\": 98,\n        \"value\": 97.999\n      }\n    },\n    {\n      \"status\": \"firing\",\n      \"labels\": {\n        \"code\": \"TGP\",\n        \"owner\": \"owner2\"\n      },\n      \"annotations\": {\n        \"description\": \"annotation\",\n        \"runbook_url\": \"https://url\",\n        \"summary\": \"summary\"\n      },\n      \"startsAt\": \"2021-10-12T09:51:03.157076Z\",\n      \"endsAt\": \"0001-01-01T00:00:00Z\",\n      \"generatorURL\": \"https://url\",\n      \"fingerprint\": \"c6eadffa33fcdf02\",\n      \"silenceURL\": \"https://url\",\n      \"dashboardURL\": \"\",\n      \"panelURL\": \"\",\n      \"values\": {\n        \"threshold\": 98,\n        \"value\": 97.997\n      }\n    }\n  ],\n  \"groupLabels\": {},\n  \"commonLabels\": {\n    \"team\": \"blue\"\n  },\n  \"commonAnnotations\": {},\n  \"externalURL\": \"https://play.grafana.org/\",\n  \"version\": \"1\",\n  \"groupKey\": \"{}:{}\",\n  \"truncatedAlerts\": 0,\n  \"title\": \"[FIRING:2]  (blue)\",\n  \"state\": \"alerting\",\n  \"message\": \"**Firing**\\n\\nLabels:\\n - alertname = T2\\n - team = blue\\n - zone = us-1\\nAnnotations:\\n - description = This is the alert rule checking the second system\\n - runbook_url = https://myrunbook.com\\n - summary = This is my summary\\nSource: https://play.grafana.org/alerting/1afz29v7z/edit\\nSilence: https://play.grafana.org/alerting/silence/new?alertmanager=grafana&matchers=alertname%3DT2%2Cteam%3Dblue%2Czone%3Dus-1\\n\\nLabels:\\n - alertname = T1\\n - team = blue\\n - zone = eu-1\\nAnnotations:\\nSource: https://play.grafana.org/alerting/d1rdpdv7k/edit\\nSilence: https://play.grafana.org/alerting/silence/new?alertmanager=grafana&matchers=alertname%3DT1%2Cteam%3Dblue%2Czone%3Deu-1\\n\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
 					"raw": "{{QI_ALERT_HOST}}/info",
 					"host": [
