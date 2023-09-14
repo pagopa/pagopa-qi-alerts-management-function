@@ -1,0 +1,60 @@
+{
+	"info": {
+		"_postman_id": "884dcbcc-9810-443c-ac14-ba050a542974",
+		"name": "QI alerts",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23963988"
+	},
+	"item": [
+		{
+			"name": "Alert ingestion",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{QI_ALERTS_API_KEY}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"receiver\": \"Test webhook\",\n  \"status\": \"firing\",\n  \"alerts\": [\n    {\n      \"status\": \"resolved\",\n      \"labels\": {\n        \"alertname\": \"test_alert_webhook\",\n        \"code\": \"TDP\",\n        \"grafana_folder\": \"test_alert_whook\",\n        \"intermediario\": \"INT_1\",\n        \"name\": \"test_alert_webhook\",\n        \"owner\": \"CF_1\"\n      },\n      \"annotations\": {\n        \"grafana_state_reason\": \"Updated\"\n      },\n      \"startsAt\": \"2023-09-11T09:00:50Z\",\n      \"endsAt\": \"2023-09-11T09:02:20.118218418Z\",\n      \"generatorURL\": \"https://pagopa-d-weu-grafana-emfwascrf8c4fyce.weu.grafana.azure.com/alerting/grafana/f6942947-4ffd-421f-9836-13dee628f20d/view\",\n      \"fingerprint\": \"c2d041a0c535d022\",\n      \"silenceURL\": \"https://pagopa-d-weu-grafana-emfwascrf8c4fyce.weu.grafana.azure.com/alerting/silence/new?alertmanager=grafana&matcher=alertname%3Dtest_alert_webhook&matcher=code%3DTDP&matcher=grafana_folder%3Dtest_alert_whook&matcher=intermediario%3DINT_1&matcher=name%3Dtest_alert_webhook&matcher=owner%3DCF_1\",\n      \"dashboardURL\": \"\",\n      \"panelURL\": \"\",\n      \"values\": null,\n      \"valueString\": \"[ var='threshold' labels={} value=10 ], [ var='value' labels={intermediario=INT_1, owner=CF_1} value=15 ], [ var='Superato' labels={intermediario=INT_1, owner=CF_1} value=1 ]\"\n    },\n    {\n      \"status\": \"resolved\",\n      \"labels\": {\n        \"alertname\": \"test_alert_webhook\",\n        \"code\": \"TDP\",\n        \"grafana_folder\": \"test_alert_whook\",\n        \"intermediario\": \"INT_2\",\n        \"name\": \"test_alert_webhook\",\n        \"owner\": \"CF_2\"\n      },\n      \"annotations\": {\n        \"grafana_state_reason\": \"Updated\"\n      },\n      \"startsAt\": \"2023-09-11T09:00:50Z\",\n      \"endsAt\": \"2023-09-11T09:02:20.118218418Z\",\n      \"generatorURL\": \"https://pagopa-d-weu-grafana-emfwascrf8c4fyce.weu.grafana.azure.com/alerting/grafana/f6942947-4ffd-421f-9836-13dee628f20d/view\",\n      \"fingerprint\": \"0ae992279ebebb20\",\n      \"silenceURL\": \"https://pagopa-d-weu-grafana-emfwascrf8c4fyce.weu.grafana.azure.com/alerting/silence/new?alertmanager=grafana&matcher=alertname%3Dtest_alert_webhook&matcher=code%3DTDP&matcher=grafana_folder%3Dtest_alert_whook&matcher=intermediario%3DINT_2&matcher=name%3Dtest_alert_webhook&matcher=owner%3DCF_2\",\n      \"dashboardURL\": \"\",\n      \"panelURL\": \"\",\n      \"values\": null,\n      \"valueString\": \"[ var='threshold' labels={} value=10 ], [ var='value' labels={intermediario=INT_2, owner=CF_2} value=55 ], [ var='Superato' labels={intermediario=INT_2, owner=CF_2} value=1 ]\"\n    },\n    {\n      \"status\": \"firing\",\n      \"labels\": {\n        \"alertname\": \"test_alert_webhook\",\n        \"code\": \"TDP\",\n        \"grafana_folder\": \"test_alert_whook\",\n        \"intermediario\": \"INT_5\",\n        \"name\": \"test_alert_webhook\",\n        \"owner\": \"CF_5\"\n      },\n      \"annotations\": {},\n      \"startsAt\": \"2023-09-11T09:03:10Z\",\n      \"endsAt\": \"0001-01-01T00:00:00Z\",\n      \"generatorURL\": \"https://pagopa-d-weu-grafana-emfwascrf8c4fyce.weu.grafana.azure.com/alerting/grafana/f6942947-4ffd-421f-9836-13dee628f20d/view\",\n      \"fingerprint\": \"90d5e42a2e767f3a\",\n      \"silenceURL\": \"https://pagopa-d-weu-grafana-emfwascrf8c4fyce.weu.grafana.azure.com/alerting/silence/new?alertmanager=grafana&matcher=alertname%3Dtest_alert_webhook&matcher=code%3DTDP&matcher=grafana_folder%3Dtest_alert_whook&matcher=intermediario%3DINT_5&matcher=name%3Dtest_alert_webhook&matcher=owner%3DCF_5\",\n      \"dashboardURL\": \"\",\n      \"panelURL\": \"\",\n      \"values\": {\n        \"Superato\": 1,\n        \"threshold\": 10,\n        \"value\": 70\n      },\n      \"valueString\": \"[ var='threshold' labels={} value=10 ], [ var='value' labels={intermediario=INT_5, owner=CF_5} value=70 ], [ var='Superato' labels={intermediario=INT_5, owner=CF_5} value=1 ]\"\n    },\n    {\n      \"status\": \"firing\",\n      \"labels\": {\n        \"alertname\": \"test_alert_webhook\",\n        \"code\": \"TDP\",\n        \"grafana_folder\": \"test_alert_whook\",\n        \"intermediario\": \"INT_6\",\n        \"name\": \"test_alert_webhook\",\n        \"owner\": \"CF_6\"\n      },\n      \"annotations\": {},\n      \"startsAt\": \"2023-09-11T09:03:10Z\",\n      \"endsAt\": \"0001-01-01T00:00:00Z\",\n      \"generatorURL\": \"https://pagopa-d-weu-grafana-emfwascrf8c4fyce.weu.grafana.azure.com/alerting/grafana/f6942947-4ffd-421f-9836-13dee628f20d/view\",\n      \"fingerprint\": \"4b72105f46122dd0\",\n      \"silenceURL\": \"https://pagopa-d-weu-grafana-emfwascrf8c4fyce.weu.grafana.azure.com/alerting/silence/new?alertmanager=grafana&matcher=alertname%3Dtest_alert_webhook&matcher=code%3DTDP&matcher=grafana_folder%3Dtest_alert_whook&matcher=intermediario%3DINT_6&matcher=name%3Dtest_alert_webhook&matcher=owner%3DCF_6\",\n      \"dashboardURL\": \"\",\n      \"panelURL\": \"\",\n      \"values\": {\n        \"Superato\": 1,\n        \"threshold\": 10,\n        \"value\": 60\n      },\n      \"valueString\": \"[ var='threshold' labels={} value=10 ], [ var='value' labels={intermediario=INT_6, owner=CF_6} value=60 ], [ var='Superato' labels={intermediario=INT_6, owner=CF_6} value=1 ]\"\n    }\n  ],\n  \"groupLabels\": {\n    \"alertname\": \"test_alert_webhook\",\n    \"grafana_folder\": \"test_alert_whook\"\n  },\n  \"commonLabels\": {\n    \"alertname\": \"test_alert_webhook\",\n    \"code\": \"TDP\",\n    \"grafana_folder\": \"test_alert_whook\",\n    \"name\": \"test_alert_webhook\"\n  },\n  \"commonAnnotations\": {},\n  \"externalURL\": \"https://pagopa-d-weu-grafana-emfwascrf8c4fyce.weu.grafana.azure.com/\",\n  \"version\": \"1\",\n  \"groupKey\": \"{}/{name=\\\"test_alert_webhook\\\"}:{alertname=\\\"test_alert_webhook\\\", grafana_folder=\\\"test_alert_whook\\\"}\",\n  \"truncatedAlerts\": 0,\n  \"orgId\": 1,\n  \"title\": \"[FIRING:2, RESOLVED:2] test_alert_webhook test_alert_whook (TDP test_alert_webhook)\",\n  \"state\": \"alerting\",\n  \"message\": \"**Firing**\\n\\nValue: Superato=1, threshold=10, value=70\\nLabels:\\n - alertname = test_alert_webhook\\n - code = TDP\\n - grafana_folder = test_alert_whook\\n - intermediario = INT_5\\n - name = test_alert_webhook\\n - owner = CF_5\\nAnnotations:\\nSource: https://pagopa-d-weu-grafana-emfwascrf8c4fyce.weu.grafana.azure.com/alerting/grafana/f6942947-4ffd-421f-9836-13dee628f20d/view\\nSilence: https://pagopa-d-weu-grafana-emfwascrf8c4fyce.weu.grafana.azure.com/alerting/silence/new?alertmanager=grafana&matcher=alertname%3Dtest_alert_webhook&matcher=code%3DTDP&matcher=grafana_folder%3Dtest_alert_whook&matcher=intermediario%3DINT_5&matcher=name%3Dtest_alert_webhook&matcher=owner%3DCF_5\\n\\nValue: Superato=1, threshold=10, value=60\\nLabels:\\n - alertname = test_alert_webhook\\n - code = TDP\\n - grafana_folder = test_alert_whook\\n - intermediario = INT_6\\n - name = test_alert_webhook\\n - owner = CF_6\\nAnnotations:\\nSource: https://pagopa-d-weu-grafana-emfwascrf8c4fyce.weu.grafana.azure.com/alerting/grafana/f6942947-4ffd-421f-9836-13dee628f20d/view\\nSilence: https://pagopa-d-weu-grafana-emfwascrf8c4fyce.weu.grafana.azure.com/alerting/silence/new?alertmanager=grafana&matcher=alertname%3Dtest_alert_webhook&matcher=code%3DTDP&matcher=grafana_folder%3Dtest_alert_whook&matcher=intermediario%3DINT_6&matcher=name%3Dtest_alert_webhook&matcher=owner%3DCF_6\\n\\n\\n**Resolved**\\n\\nValue: [no value]\\nLabels:\\n - alertname = test_alert_webhook\\n - code = TDP\\n - grafana_folder = test_alert_whook\\n - intermediario = INT_1\\n - name = test_alert_webhook\\n - owner = CF_1\\nAnnotations:\\n - grafana_state_reason = Updated\\nSource: https://pagopa-d-weu-grafana-emfwascrf8c4fyce.weu.grafana.azure.com/alerting/grafana/f6942947-4ffd-421f-9836-13dee628f20d/view\\nSilence: https://pagopa-d-weu-grafana-emfwascrf8c4fyce.weu.grafana.azure.com/alerting/silence/new?alertmanager=grafana&matcher=alertname%3Dtest_alert_webhook&matcher=code%3DTDP&matcher=grafana_folder%3Dtest_alert_whook&matcher=intermediario%3DINT_1&matcher=name%3Dtest_alert_webhook&matcher=owner%3DCF_1\\n\\nValue: [no value]\\nLabels:\\n - alertname = test_alert_webhook\\n - code = TDP\\n - grafana_folder = test_alert_whook\\n - intermediario = INT_2\\n - name = test_alert_webhook\\n - owner = CF_2\\nAnnotations:\\n - grafana_state_reason = Updated\\nSource: https://pagopa-d-weu-grafana-emfwascrf8c4fyce.weu.grafana.azure.com/alerting/grafana/f6942947-4ffd-421f-9836-13dee628f20d/view\\nSilence: https://pagopa-d-weu-grafana-emfwascrf8c4fyce.weu.grafana.azure.com/alerting/silence/new?alertmanager=grafana&matcher=alertname%3Dtest_alert_webhook&matcher=code%3DTDP&matcher=grafana_folder%3Dtest_alert_whook&matcher=intermediario%3DINT_2&matcher=name%3Dtest_alert_webhook&matcher=owner%3DCF_2\\n\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{QI_ALERT_HOST}}/qi/alerts",
+					"host": [
+						"{{QI_ALERT_HOST}}"
+					],
+					"path": [
+						"qi",
+						"alerts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get app info",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{QI_ALERT_HOST}}/info",
+					"host": [
+						"{{QI_ALERT_HOST}}"
+					],
+					"path": [
+						"info"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
