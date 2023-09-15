@@ -32,6 +32,7 @@ microservice-chart:
     create: true
     host: "weuprod.qi.internal.platform.pagopa.it"
     path: /pagopa-qi-alerts-management-function-service/(.*)
+    servicePort: 80
   serviceAccount:
     create: false
     annotations: {}
