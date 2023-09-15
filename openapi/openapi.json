@@ -161,6 +161,127 @@
             "type": "string",
             "description": "Will be deprecated soon"
           }
+        },
+        "example": {
+          "receiver": "Test webhook",
+          "status": "firing",
+          "alerts": [
+            {
+              "status": "resolved",
+              "labels": {
+                "alertname": "test_alert_webhook",
+                "code": "TDP",
+                "grafana_folder": "test_alert_whook",
+                "intermediario": "INT_1",
+                "name": "test_alert_webhook",
+                "owner": "CF_1"
+              },
+              "annotations": {
+                "grafana_state_reason": "Updated"
+              },
+              "startsAt": "2023-09-11T09:00:50Z",
+              "endsAt": "2023-09-11T09:02:20.118218418Z",
+              "generatorURL": "https://pagopa-d-weu-grafana-emfwascrf8c4fyce.weu.grafana.azure.com/alerting/grafana/f6942947-4ffd-421f-9836-13dee628f20d/view",
+              "fingerprint": "c2d041a0c535d022",
+              "silenceURL": "https://pagopa-d-weu-grafana-emfwascrf8c4fyce.weu.grafana.azure.com/alerting/silence/new?alertmanager=grafana&matcher=alertname%3Dtest_alert_webhook&matcher=code%3DTDP&matcher=grafana_folder%3Dtest_alert_whook&matcher=intermediario%3DINT_1&matcher=name%3Dtest_alert_webhook&matcher=owner%3DCF_1",
+              "dashboardURL": "",
+              "panelURL": "",
+              "values": null,
+              "valueString": "[ var='threshold' labels={} value=10 ], [ var='value' labels={intermediario=INT_1, owner=CF_1} value=15 ], [ var='Superato' labels={intermediario=INT_1, owner=CF_1} value=1 ]"
+            },
+            {
+              "status": "resolved",
+              "labels": {
+                "alertname": "test_alert_webhook",
+                "code": "TDP",
+                "grafana_folder": "test_alert_whook",
+                "intermediario": "INT_2",
+                "name": "test_alert_webhook",
+                "owner": "CF_2"
+              },
+              "annotations": {
+                "grafana_state_reason": "Updated"
+              },
+              "startsAt": "2023-09-11T09:00:50Z",
+              "endsAt": "2023-09-11T09:02:20.118218418Z",
+              "generatorURL": "https://pagopa-d-weu-grafana-emfwascrf8c4fyce.weu.grafana.azure.com/alerting/grafana/f6942947-4ffd-421f-9836-13dee628f20d/view",
+              "fingerprint": "0ae992279ebebb20",
+              "silenceURL": "https://pagopa-d-weu-grafana-emfwascrf8c4fyce.weu.grafana.azure.com/alerting/silence/new?alertmanager=grafana&matcher=alertname%3Dtest_alert_webhook&matcher=code%3DTDP&matcher=grafana_folder%3Dtest_alert_whook&matcher=intermediario%3DINT_2&matcher=name%3Dtest_alert_webhook&matcher=owner%3DCF_2",
+              "dashboardURL": "",
+              "panelURL": "",
+              "values": null,
+              "valueString": "[ var='threshold' labels={} value=10 ], [ var='value' labels={intermediario=INT_2, owner=CF_2} value=55 ], [ var='Superato' labels={intermediario=INT_2, owner=CF_2} value=1 ]"
+            },
+            {
+              "status": "firing",
+              "labels": {
+                "alertname": "test_alert_webhook",
+                "code": "TDP",
+                "grafana_folder": "test_alert_whook",
+                "intermediario": "INT_5",
+                "name": "test_alert_webhook",
+                "owner": "CF_5"
+              },
+              "annotations": {},
+              "startsAt": "2023-09-11T09:03:10Z",
+              "endsAt": "0001-01-01T00:00:00Z",
+              "generatorURL": "https://pagopa-d-weu-grafana-emfwascrf8c4fyce.weu.grafana.azure.com/alerting/grafana/f6942947-4ffd-421f-9836-13dee628f20d/view",
+              "fingerprint": "90d5e42a2e767f3a",
+              "silenceURL": "https://pagopa-d-weu-grafana-emfwascrf8c4fyce.weu.grafana.azure.com/alerting/silence/new?alertmanager=grafana&matcher=alertname%3Dtest_alert_webhook&matcher=code%3DTDP&matcher=grafana_folder%3Dtest_alert_whook&matcher=intermediario%3DINT_5&matcher=name%3Dtest_alert_webhook&matcher=owner%3DCF_5",
+              "dashboardURL": "",
+              "panelURL": "",
+              "values": {
+                "Superato": 1,
+                "threshold": 10,
+                "value": 70
+              },
+              "valueString": "[ var='threshold' labels={} value=10 ], [ var='value' labels={intermediario=INT_5, owner=CF_5} value=70 ], [ var='Superato' labels={intermediario=INT_5, owner=CF_5} value=1 ]"
+            },
+            {
+              "status": "firing",
+              "labels": {
+                "alertname": "test_alert_webhook",
+                "code": "TDP",
+                "grafana_folder": "test_alert_whook",
+                "intermediario": "INT_6",
+                "name": "test_alert_webhook",
+                "owner": "CF_6"
+              },
+              "annotations": {},
+              "startsAt": "2023-09-11T09:03:10Z",
+              "endsAt": "0001-01-01T00:00:00Z",
+              "generatorURL": "https://pagopa-d-weu-grafana-emfwascrf8c4fyce.weu.grafana.azure.com/alerting/grafana/f6942947-4ffd-421f-9836-13dee628f20d/view",
+              "fingerprint": "4b72105f46122dd0",
+              "silenceURL": "https://pagopa-d-weu-grafana-emfwascrf8c4fyce.weu.grafana.azure.com/alerting/silence/new?alertmanager=grafana&matcher=alertname%3Dtest_alert_webhook&matcher=code%3DTDP&matcher=grafana_folder%3Dtest_alert_whook&matcher=intermediario%3DINT_6&matcher=name%3Dtest_alert_webhook&matcher=owner%3DCF_6",
+              "dashboardURL": "",
+              "panelURL": "",
+              "values": {
+                "Superato": 1,
+                "threshold": 10,
+                "value": 60
+              },
+              "valueString": "[ var='threshold' labels={} value=10 ], [ var='value' labels={intermediario=INT_6, owner=CF_6} value=60 ], [ var='Superato' labels={intermediario=INT_6, owner=CF_6} value=1 ]"
+            }
+          ],
+          "groupLabels": {
+            "alertname": "test_alert_webhook",
+            "grafana_folder": "test_alert_whook"
+          },
+          "commonLabels": {
+            "alertname": "test_alert_webhook",
+            "code": "TDP",
+            "grafana_folder": "test_alert_whook",
+            "name": "test_alert_webhook"
+          },
+          "commonAnnotations": {},
+          "externalURL": "https://pagopa-d-weu-grafana-emfwascrf8c4fyce.weu.grafana.azure.com/",
+          "version": "1",
+          "groupKey": "{}/{name=\"test_alert_webhook\"}:{alertname=\"test_alert_webhook\", grafana_folder=\"test_alert_whook\"}",
+          "truncatedAlerts": 0,
+          "orgId": 1,
+          "title": "[FIRING:2, RESOLVED:2] test_alert_webhook test_alert_whook (TDP test_alert_webhook)",
+          "state": "alerting",
+          "message": "**Firing**\n\nValue: Superato=1, threshold=10, value=70\nLabels:\n - alertname = test_alert_webhook\n - code = TDP\n - grafana_folder = test_alert_whook\n - intermediario = INT_5\n - name = test_alert_webhook\n - owner = CF_5\nAnnotations:\nSource: https://pagopa-d-weu-grafana-emfwascrf8c4fyce.weu.grafana.azure.com/alerting/grafana/f6942947-4ffd-421f-9836-13dee628f20d/view\nSilence: https://pagopa-d-weu-grafana-emfwascrf8c4fyce.weu.grafana.azure.com/alerting/silence/new?alertmanager=grafana&matcher=alertname%3Dtest_alert_webhook&matcher=code%3DTDP&matcher=grafana_folder%3Dtest_alert_whook&matcher=intermediario%3DINT_5&matcher=name%3Dtest_alert_webhook&matcher=owner%3DCF_5\n\nValue: Superato=1, threshold=10, value=60\nLabels:\n - alertname = test_alert_webhook\n - code = TDP\n - grafana_folder = test_alert_whook\n - intermediario = INT_6\n - name = test_alert_webhook\n - owner = CF_6\nAnnotations:\nSource: https://pagopa-d-weu-grafana-emfwascrf8c4fyce.weu.grafana.azure.com/alerting/grafana/f6942947-4ffd-421f-9836-13dee628f20d/view\nSilence: https://pagopa-d-weu-grafana-emfwascrf8c4fyce.weu.grafana.azure.com/alerting/silence/new?alertmanager=grafana&matcher=alertname%3Dtest_alert_webhook&matcher=code%3DTDP&matcher=grafana_folder%3Dtest_alert_whook&matcher=intermediario%3DINT_6&matcher=name%3Dtest_alert_webhook&matcher=owner%3DCF_6\n\n\n**Resolved**\n\nValue: [no value]\nLabels:\n - alertname = test_alert_webhook\n - code = TDP\n - grafana_folder = test_alert_whook\n - intermediario = INT_1\n - name = test_alert_webhook\n - owner = CF_1\nAnnotations:\n - grafana_state_reason = Updated\nSource: https://pagopa-d-weu-grafana-emfwascrf8c4fyce.weu.grafana.azure.com/alerting/grafana/f6942947-4ffd-421f-9836-13dee628f20d/view\nSilence: https://pagopa-d-weu-grafana-emfwascrf8c4fyce.weu.grafana.azure.com/alerting/silence/new?alertmanager=grafana&matcher=alertname%3Dtest_alert_webhook&matcher=code%3DTDP&matcher=grafana_folder%3Dtest_alert_whook&matcher=intermediario%3DINT_1&matcher=name%3Dtest_alert_webhook&matcher=owner%3DCF_1\n\nValue: [no value]\nLabels:\n - alertname = test_alert_webhook\n - code = TDP\n - grafana_folder = test_alert_whook\n - intermediario = INT_2\n - name = test_alert_webhook\n - owner = CF_2\nAnnotations:\n - grafana_state_reason = Updated\nSource: https://pagopa-d-weu-grafana-emfwascrf8c4fyce.weu.grafana.azure.com/alerting/grafana/f6942947-4ffd-421f-9836-13dee628f20d/view\nSilence: https://pagopa-d-weu-grafana-emfwascrf8c4fyce.weu.grafana.azure.com/alerting/silence/new?alertmanager=grafana&matcher=alertname%3Dtest_alert_webhook&matcher=code%3DTDP&matcher=grafana_folder%3Dtest_alert_whook&matcher=intermediario%3DINT_2&matcher=name%3Dtest_alert_webhook&matcher=owner%3DCF_2\n"
         }
       },
       "AlertInfo": {
@@ -189,6 +310,9 @@
           },
           "values": {
             "$ref": "#/components/schemas/KeyValueMapNumericValue"
+          },
+          "valueString": {
+            "type": "string"
           },
           "generatorURL": {
             "type": "string",
