@@ -4,7 +4,8 @@ locals {
   apim = {
     name       = "${local.product}-apim"
     rg         = "${local.product}-api-rg"
-    product_id = "TODO" # TODO product id to import from pagopa-infra
+    product_id = "qi"
+    hostname   = "api.${var.apim_dns_zone_prefix}.${var.external_domain}"
   }
 }
 
