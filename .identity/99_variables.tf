@@ -1,38 +1,5 @@
-locals {
-  github = {
-    org        = "pagopa"
-    repository = "pagopa-qi-alerts-management-function"
-  }
-
-  prefix         = "pagopa"
-  domain         = "qi"
-  location_short = "weu"
-  product        = "${var.prefix}-${var.env_short}"
-
-  app_name = "github-${local.github.org}-${local.github.repository}-${var.prefix}-${local.domain}-${var.env}-aks"
-
-  aks_cluster = {
-    name                = "${local.product}-${local.location_short}-${var.env}-aks"
-    resource_group_name = "${local.product}-${local.location_short}-${var.env}-aks-rg"
-  }
-
-  container_app_environment = {
-    name           = "${local.prefix}-${var.env_short}-${local.location_short}-github-runner-cae",
-    resource_group = "${local.prefix}-${var.env_short}-${local.location_short}-github-runner-rg",
-  }
-}
-
-variable "env" {
-  type = string
-}
-
-variable "env_short" {
-  type = string
-}
-
 variable "prefix" {
-  type    = string
-  default = "pagopa"
+  type = string
   validation {
     condition = (
       length(var.prefix) <= 6
@@ -41,16 +8,76 @@ variable "prefix" {
   }
 }
 
-variable "github_repository_environment" {
+variable "env" {
+  type        = string
+  description = "Environment"
+}
+
+variable "env_short" {
+  type = string
+  validation {
+    condition = (
+      length(var.env_short) <= 1
+    )
+    error_message = "Max length is 1 chars."
+  }
+}
+
+variable "location" {
+  type    = string
+  default = "westeurope"
+}
+
+variable "location_short" {
+  type    = string
+  default = "weu"
+}
+
+variable "github" {
+  type = object({
+    org        = string
+    repository = string
+  })
+  description = "GitHub Organization and repository name"
+  # default = {
+  #   org        = "pagopa"
+  #   repository = "github-actions-infra-azure-poc"
+  # }
+}
+
+variable "github_token" {
+  type        = string
+  sensitive   = true
+  description = "GitHub Organization and repository name"
+}
+
+variable "environment_ci_roles" {
+  type = object({
+    subscription = list(string)
+  })
+  description = "GitHub Continous Integration roles"
+}
+
+variable "github_repository_environment_ci" {
+  type = object({
+    protected_branches     = bool
+    custom_branch_policies = bool
+  })
+  description = "GitHub Continous Integration roles"
+}
+
+variable "environment_cd_roles" {
+  type = object({
+    subscription = list(string)
+  })
+  description = "GitHub Continous Delivery roles"
+}
+
+variable "github_repository_environment_cd" {
   type = object({
     protected_branches     = bool
     custom_branch_policies = bool
     reviewers_teams        = list(string)
   })
-  description = "GitHub Continuous Integration roles"
-  default = {
-    protected_branches     = false
-    custom_branch_policies = true
-    reviewers_teams        = ["pagopa-team-core"]
-  }
+  description = "GitHub Continous Integration roles"
 }
