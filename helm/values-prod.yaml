@@ -82,5 +82,14 @@ microservice-chart:
                 operator: In
                 values:
                   - user
+    podAntiAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+        - weight: 100
+          podAffinityTerm:
+            labelSelector:
+              matchLabels:
+                app.kubernetes.io/instance: pagopaqialertsmanagementfunction
+            namespaces: [ "qi" ]
+            topologyKey: topology.kubernetes.io/zone
   canaryDelivery:
     create: false
