@@ -93,3 +93,5 @@ microservice-chart:
             topologyKey: topology.kubernetes.io/zone
   canaryDelivery:
     create: false
+  azure:
+    workloadIdentityClientId: <workload-identity-client-id-set-automatically-by-gha>
