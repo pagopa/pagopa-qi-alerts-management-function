@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "version": "0.2.5",
+    "version": "0.2.4-1-PIDM-481-wl-identity",
     "title": "Pagopa Quality Improvement API's",
     "description": "API exposed by QI microservice for alert ingestion"
   },

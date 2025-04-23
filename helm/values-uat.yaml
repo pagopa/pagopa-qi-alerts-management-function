@@ -4,20 +4,20 @@ microservice-chart:
   fullnameOverride: ""
   image:
     repository: ghcr.io/pagopa/pagopa-qi-alerts-management-function
-    tag: "0.2.5"
+    tag: "0.2.4-1-PIDM-481-wl-identity"
     pullPolicy: Always
   # https://github.com/Azure/azure-functions-host/blob/dev/src/WebJobs.Script.WebHost/Controllers/HostController.cs
   livenessProbe:
     httpGet:
       path: /info
-      port: 80
+      port: 8080
     initialDelaySeconds: 60
     failureThreshold: 6
     periodSeconds: 10
   readinessProbe:
     httpGet:
       path: /info
-      port: 80
+      port: 8080
     initialDelaySeconds: 60
     failureThreshold: 6
     periodSeconds: 10
@@ -27,16 +27,16 @@ microservice-chart:
     create: true
     type: ClusterIP
     ports:
-      - 80
+      - 8080
   ingress:
     create: true
     host: "weuuat.qi.internal.uat.platform.pagopa.it"
     path: /pagopa-qi-alerts-management-function-service/(.*)
-    servicePort: 80
+    servicePort: 8080
   serviceAccount:
     create: false
     annotations: {}
-    name: ""
+    name: "qi-workload-identity"
   podAnnotations: {}
   podSecurityContext:
     seccompProfile:
@@ -65,6 +65,7 @@ microservice-chart:
   envConfig:
     WEBSITE_SITE_NAME: "pagopaqialertsmanagementfunction" # required to show cloud role name in application insights
     FUNCTIONS_WORKER_RUNTIME: "java"
+    ASPNETCORE_URLS: "http://*:8080"
   envSecret:
     APPLICATIONINSIGHTS_CONNECTION_STRING: 'ai-u-connection-string'
     QI_ALERTS_TX_EVENTHUB_CONN_STRING: 'ehub-u-tx-qi-alert-connection-string'
@@ -84,3 +85,5 @@ microservice-chart:
                   - user
   canaryDelivery:
     create: false
+  azure:
+    workloadIdentityClientId: <workload-identity-client-id-set-automatically-by-gha>
