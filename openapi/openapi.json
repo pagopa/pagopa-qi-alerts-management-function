@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "version": "0.2.6",
+    "version": "0.2.7",
     "title": "Pagopa Quality Improvement API's",
     "description": "API exposed by QI microservice for alert ingestion"
   },
