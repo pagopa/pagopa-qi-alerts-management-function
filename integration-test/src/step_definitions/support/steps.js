@@ -1,11 +1,8 @@
 const {Given, When, Then} = require('@cucumber/cucumber')
 const assert = require("assert");
 const {call, post} = require("./common");
-const fs = require("fs");
 
-let rawdata = fs.readFileSync('./config/properties.json');
-let properties = JSON.parse(rawdata);
-const app_host = properties.app_host;
+const app_host = process.env.APP_HOST;
 
 let body;
 let responseToCheck;
@@ -16,7 +13,7 @@ Given(/^initial json$/, function (payload) {
 
 When(/^the client send (GET|POST|PUT|DELETE) to (.*)$/,
     async function (method, url) {
-      responseToCheck = await call(method, afm_host + url, body)
+      responseToCheck = await call(method, app_host + url, body)
     });
 
 Then(/^check statusCode is (\d+)$/, function (status) {
