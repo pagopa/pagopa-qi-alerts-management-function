@@ -35,7 +35,7 @@ jobs:
     steps:
       - name: Code Review
         # see https://github.com/pagopa/github-actions-template/commits/main
-        uses: pagopa/github-actions-template/maven-code-review@50aaf5cffa09d76b953e64a630bc9e0528a6d73b
+        uses: pagopa/github-actions-template/maven-code-review@713f5abd8f8ee210e5f6a4243ae52eb7c1b3b5ab # v2.4.1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           sonar_token: ${{ secrets.SONAR_TOKEN }}
