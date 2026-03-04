@@ -8,15 +8,12 @@ on:
     types: [ opened, synchronize, labeled, unlabeled, reopened, edited ]
 
 
-permissions:
-  pull-requests: write
-
-
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   auto_assign:
     name: Auto Assign
-
+    permissions:
+      pull-requests: write
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -30,6 +27,8 @@ jobs:
 
   check_format:
     name: Check Format
+    permissions:
+      pull-requests: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -38,7 +37,7 @@ jobs:
       - name: Formatting
         id: format
         continue-on-error: true
-        uses: findologic/intellij-format-action@main
+        uses: findologic/intellij-format-action@71ab7ce630fef4398cb571a5ef46b2a3cee3e0d5
         with:
           path: .
           fail-on-changes: false
@@ -74,6 +73,8 @@ jobs:
             core.setFailed('Format your code.')
 
   check_size:
+    permissions:
+      pull-requests: write
     runs-on: ubuntu-latest
     name: Check Size
     steps:
