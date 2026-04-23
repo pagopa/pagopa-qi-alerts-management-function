@@ -12,16 +12,14 @@ on:
 
   workflow_dispatch:
 
-permissions:
-  id-token: write
-  contents: read
-  deployments: write
-
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   dashboard:
     # The type of runner that the job will run on
     runs-on: ubuntu-22.04
+    permissions:
+      id-token: write
+      contents: read
 
     strategy:
       matrix:
@@ -53,6 +51,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: dashboard
     if: ${{ always() }}
+    permissions:
+      deployments: write
     steps:
       - name: Delete Previous deployments
         uses: actions/github-script@d7906e4ad0b1822421a7e6a35d5ca353c962f410 # v6
