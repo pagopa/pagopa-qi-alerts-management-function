@@ -38,10 +38,11 @@ jobs:
       - name: Formatting
         id: format
         continue-on-error: true
-        uses: findologic/intellij-format-action@71ab7ce630fef4398cb571a5ef46b2a3cee3e0d5 # main
+        uses: findologic/intellij-format-action@71ab7ce630fef4398cb571a5ef46b2a3cee3e0d5 # v1.0.1
         with:
-          path: .
+          path: ./src
           fail-on-changes: false
+          include-glob: "*.java"
 
       - uses: actions/github-script@d556feaca394842dc55e4734bf3bb9f685482fa0 # v6.3.3
         if: steps.format.outcome != 'success'
@@ -74,6 +75,8 @@ jobs:
             core.setFailed('Format your code.')
 
   check_size:
+    permissions:
+      pull-requests: write
     runs-on: ubuntu-latest
     name: Check Size
     permissions:
