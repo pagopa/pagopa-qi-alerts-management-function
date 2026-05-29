@@ -5,7 +5,7 @@
 
     <groupId>it.pagopa</groupId>
     <artifactId>pagopa-qi-alerts-management-function</artifactId>
-    <version>0.2.10-1-PIDM-1599-update-deploy-action</version>
+    <version>0.2.11</version>
     <packaging>jar</packaging>
 
     <name>Quality improvement alerts management</name>
