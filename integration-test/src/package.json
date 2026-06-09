@@ -1,5 +1,5 @@
 {
-  "name": "your-project-name", // TODO: set your name
+  "name": "pagopa-qi-alerts-management-function-integration-test",
   "license": "MIT",
   "version": "1.0.0",
   "scripts": {
